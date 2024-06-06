@@ -85,7 +85,7 @@ namespace HarmonyLib.Internal
         {
             lock (PatchInfos)
             {
-                return PatchInfos.GetValueSafe(methodBase);
+                return GeneralExtensions.GetValueSafe(PatchInfos, methodBase);
             }
         }
 

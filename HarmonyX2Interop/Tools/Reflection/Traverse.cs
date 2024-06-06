@@ -123,7 +123,7 @@ namespace HarmonyLib
         private Traverse(object root, MemberInfo info, object[] index)
         {
             _root = root;
-            _type = root?.GetType() ?? info.GetUnderlyingType();
+            _type = root?.GetType() ?? AccessTools.GetUnderlyingType(info);
             _info = info;
             _params = index;
         }
@@ -251,7 +251,7 @@ namespace HarmonyLib
             var info = Cache.GetFieldInfo(resolved._type, name);
             if (info == null || info.IsStatic == false && resolved._root == null)
             {
-                Logger.Log(Logger.LogChannel.Warn, () => $"Could not find field named {name} on {resolved._type.FullDescription()}");
+                Logger.Log(Logger.LogChannel.Warn, () => $"Could not find field named {name} on {GeneralExtensions.FullDescription(resolved._type)}");
                 return new Traverse();
             }
 
@@ -290,7 +290,7 @@ namespace HarmonyLib
             var info = Cache.GetPropertyInfo(resolved._type, name);
             if (info == null)
             {
-                Logger.Log(Logger.LogChannel.Warn, () => $"Could not find property named {name} on {resolved._type.FullDescription()}");
+                Logger.Log(Logger.LogChannel.Warn, () => $"Could not find property named {name} on {GeneralExtensions.FullDescription(resolved._type)}");
                 return new Traverse();
             }
 
@@ -332,7 +332,7 @@ namespace HarmonyLib
             var method = Cache.GetMethodInfo(resolved._type, name, types);
             if (method == null)
             {
-                Logger.Log(Logger.LogChannel.Warn, () => $"Could not find method named {name} with {arguments.Length} arguments on {resolved._type.FullDescription()}");
+                Logger.Log(Logger.LogChannel.Warn, () => $"Could not find method named {name} with {arguments.Length} arguments on {GeneralExtensions.FullDescription(resolved._type)}");
                 return new Traverse();
             }
 
@@ -353,7 +353,7 @@ namespace HarmonyLib
             var method = Cache.GetMethodInfo(resolved._type, name, paramTypes);
             if (method == null)
             {
-                Logger.Log(Logger.LogChannel.Warn, () => $"Could not find method named {name} with {paramTypes.Length} parameters on {resolved._type.FullDescription()}");
+                Logger.Log(Logger.LogChannel.Warn, () => $"Could not find method named {name} with {paramTypes.Length} parameters on {GeneralExtensions.FullDescription(resolved._type)}");
                 return new Traverse();
             }
 

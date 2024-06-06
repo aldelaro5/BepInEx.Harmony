@@ -27,7 +27,7 @@ namespace HarmonyLib
         ///
         public static void DoIf<T>(this IEnumerable<T> sequence, Func<T, bool> condition, Action<T> action)
         {
-            sequence.Where(condition).Do(action);
+            Do(sequence.Where(condition), action);
         }
 
         /// <summary>A helper to add an item to a collection</summary>

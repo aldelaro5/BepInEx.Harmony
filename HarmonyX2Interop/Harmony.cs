@@ -298,7 +298,7 @@ namespace HarmonyLib
                     if ((Logger.ChannelFilter & Logger.LogChannel.Warn) != 0)
                     {
                         if (method.GetCustomAttributes(typeof(HarmonyAttribute), true).Any())
-                            Logger.LogText(Logger.LogChannel.Warn, "Method " + method.FullDescription() + " has an invalid combination of Harmony attributes and will be ignored");
+                            Logger.LogText(Logger.LogChannel.Warn, "Method " + GeneralExtensions.FullDescription(method) + " has an invalid combination of Harmony attributes and will be ignored");
                     }
                 }
             }

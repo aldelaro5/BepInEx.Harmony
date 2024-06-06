@@ -72,7 +72,7 @@ namespace HarmonyLib
             var result = AccessTools.Method(type, name, parameters);
             if (result == null)
                 throw new ArgumentException(
-                    $"Cannot not find method for type {type} and name {name} and parameters {parameters?.Description()}");
+                    $"Cannot not find method for type {type} and name {name} and parameters {GeneralExtensions.Description(parameters)}");
             ImportMethod(result);
         }
 

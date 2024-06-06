@@ -32,7 +32,7 @@ namespace HarmonyLib
         {
             if (parameters == null)
                 return "NULL";
-            return $"({parameters.Join(p => p.FullDescription())})";
+            return $"({Join(parameters, FullDescription)})";
         }
 
         /// <summary>A full description of a type</summary>
@@ -57,7 +57,7 @@ namespace HarmonyLib
                 {
                     if (result.EndsWith("<", StringComparison.Ordinal) == false)
                         result += ", ";
-                    result += subTypes[i].FullDescription();
+                    result += FullDescription(subTypes[i]);
                 }
 
                 result += ">";
@@ -77,7 +77,7 @@ namespace HarmonyLib
             var parameters = method.GetParameters().Select(p => p.ParameterType).ToArray();
             var returnType = AccessTools.GetReturnedType(method);
             return
-                $"{returnType.FullDescription()} {method.DeclaringType.FullDescription()}.{method.Name}{parameters.Description()}";
+                $"{FullDescription(returnType)} {FullDescription(method.DeclaringType)}.{method.Name}{Description(parameters)}";
         }
 
         /// <summary>A helper converting parameter infos to types</summary>

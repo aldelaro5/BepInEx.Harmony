@@ -56,7 +56,8 @@ namespace HarmonyLib
         /// <returns>The fast invocation handler</returns>
         public FastInvokeHandler Handler(MethodInfo methodInfo, Module module)
         {
-            var result = methodInfo.GetFastDelegate(directBoxValueAccess);
+            //var result = methodInfo.GetFastDelegate(directBoxValueAccess);
+            var result = methodInfo.GetFastInvoker();
             return (target, parameters) => result(target, parameters);
         }
 

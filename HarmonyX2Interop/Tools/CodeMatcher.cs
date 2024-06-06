@@ -97,17 +97,17 @@ namespace HarmonyLib
             if (name != null)
                 result += $"{name}: ";
             if (opcodes.Count > 0)
-                result += $"opcodes={opcodes.Join()} ";
+                result += $"opcodes={GeneralExtensions.Join(opcodes)} ";
             if (operands.Count > 0)
-                result += $"operands={operands.Join()} ";
+                result += $"operands={GeneralExtensions.Join(operands)} ";
             if (labels.Count > 0)
-                result += $"labels={labels.Join()} ";
+                result += $"labels={GeneralExtensions.Join(labels)} ";
             if (blocks.Count > 0)
-                result += $"blocks={blocks.Join()} ";
+                result += $"blocks={GeneralExtensions.Join(blocks)} ";
             if (jumpsFrom.Count > 0)
-                result += $"jumpsFrom={jumpsFrom.Join()} ";
+                result += $"jumpsFrom={GeneralExtensions.Join(jumpsFrom)} ";
             if (jumpsTo.Count > 0)
-                result += $"jumpsTo={jumpsTo.Join()} ";
+                result += $"jumpsTo={GeneralExtensions.Join(jumpsTo)} ";
             if (predicate != null)
                 result += "predicate=yes ";
             return $"{result.TrimEnd()}]";
@@ -634,7 +634,7 @@ namespace HarmonyLib
                 Pos += direction;
             }
 
-            lastError = IsInvalid ? $"Cannot find {matches.Join()}" : null;
+            lastError = IsInvalid ? $"Cannot find {GeneralExtensions.Join(matches)}" : null;
             return this;
         }
 

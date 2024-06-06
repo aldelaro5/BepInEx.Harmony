@@ -227,7 +227,7 @@ namespace HarmonyLib
                 {
                     Logger.Log(Logger.LogChannel.Warn,
                                () =>
-                                   $"AccessTools.DeclaredMethod: Could not find method for type {type} and name {name} and parameters {parameters?.Description()}");
+                                   $"AccessTools.DeclaredMethod: Could not find method for type {type} and name {name} and parameters {GeneralExtensions.Description(parameters)}");
                     return null;
                 }
 
@@ -279,7 +279,7 @@ namespace HarmonyLib
 
                 if (result == null)
                 {
-                    Logger.Log(Logger.LogChannel.Warn, () => $"AccessTools.Method: Could not find method for type {type} and name {name} and parameters {parameters?.Description()}");
+                    Logger.Log(Logger.LogChannel.Warn, () => $"AccessTools.Method: Could not find method for type {type} and name {name} and parameters {GeneralExtensions.Description(parameters)}");
                     return null;
                 }
 
@@ -967,7 +967,7 @@ namespace HarmonyLib
         /// <returns>The member itself if its declared. Otherwise the member that is actually implemented in a base type</returns>
         public static T GetDeclaredMember<T>(this T member) where T : MemberInfo
         {
-            if (member.DeclaringType == null || member.IsDeclaredMember())
+            if (member.DeclaringType == null || AccessTools.IsDeclaredMember(member))
                 return member;
 
             var metaToken = member.MetadataToken;
